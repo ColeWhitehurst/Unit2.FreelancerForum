@@ -63,7 +63,7 @@ function render() {
     const header = document.querySelector('header');
     const averageElements = prices.map((price) => {
         const averageElement = document.createElement('li');
-        averageElement.textContent = average;
+        averageElement.textContent = `The average stating price is ${average}.`;
         header.append(averageElement);
         return averageElement;
     });
@@ -84,6 +84,9 @@ function render() {
 const addFreelancerIntervalId = setInterval(() => {
     addFreelancer();
     render();
+    if (averageElement !== 1) {
+        clearInterval(addFreelancerIntervalId);
+    }
 }, 2000);
 
 
