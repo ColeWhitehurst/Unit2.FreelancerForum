@@ -27,12 +27,13 @@ const freelancers = [{
 // }];
 const names = ['Alice', 'Bob', 'Carol', 'Jack', 'Greg', 'Shannon']
 const prices = [30, 50, 70, 40, 70, 60, 80];
-const occupation = ['writer', 'teacher', 'programmer', 'coach', 'therapist', 'accountant', 'banker'];
+const occupations = ['writer', 'teacher', 'programmer', 'coach', 'therapist', 'accountant', 'banker'];
 // const maxFreelancers = 10;
 
 function addFreelancer() {
     const name = names[Math.floor(Math.random() * names.length)];
-    const price = randomPrice(20, 110);
+    const price = prices[Math.floor(Math.random() * 10)];
+    const occupation = occupations[Math.floor(Math.random() * occupations.length)];
     freelancers.push({name, price, occupation});
 }
 
@@ -63,9 +64,9 @@ function average() {
     return average;
 }
 
-function randomPrice() {
-    Math.floor(Math.random() * (110 - 20)) + 20;
-};
+// function randomPrice() {
+//     Math.floor(Math.random() * (110 - 20)) + 20;
+// };
 
 function render() {
     const averageList = document.querySelector('#average');
