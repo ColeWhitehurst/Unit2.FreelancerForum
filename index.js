@@ -8,34 +8,32 @@ const freelancers = [{
     price: 50
 }];
 
-const newFreelancers = [{
-    name: 'Carol',
-    occupation: 'programmer',
-    price: 70
-}, {
-    name: 'Jack',
-    occupation: 'coach',
-    price: 40
-}, {
-    name: 'Greg',
-    occupation: 'therapist',
-    price: 70
-}, {
-    name: 'Shannon',
-    occupation: 'accountant',
-    price: 60
-}];
-// const people = ['Alice', 'Bob', 'Carol', 'Jack', 'Greg', 'Shannon']
+// const newFreelancers = [{
+//     name: 'Carol',
+//     occupation: 'programmer',
+//     price: 70
+// }, {
+//     name: 'Jack',
+//     occupation: 'coach',
+//     price: 40
+// }, {
+//     name: 'Greg',
+//     occupation: 'therapist',
+//     price: 70
+// }, {
+//     name: 'Shannon',
+//     occupation: 'accountant',
+//     price: 60
+// }];
+const names = ['Alice', 'Bob', 'Carol', 'Jack', 'Greg', 'Shannon']
 const prices = [30, 50, 70, 40, 70, 60, 80];
-// const occupation = ['writer', 'teacher', 'programmer', 'coach', 'therapist', 'accountant', 'banker'];
+const occupation = ['writer', 'teacher', 'programmer', 'coach', 'therapist', 'accountant', 'banker'];
 // const maxFreelancers = 10;
 
 function addFreelancer() {
-    const freelancer = newFreelancers[Math.floor(Math.random() * freelancers.length)];
-    // if (freelancers.length >= maxFreelancers) {
-    //     clearInterval(addFreelancerIntervalId)
-    // }
-    freelancers.push({freelancer});
+    const name = names[Math.floor(Math.random() * names.length)];
+    const price = randomPrice(20, 110);
+    freelancers.push({name, price, occupation});
 }
 
 // function averagePrice() {
@@ -52,21 +50,33 @@ function addFreelancer() {
     
 //     averageList.replaceChildren(...averageElements);
 // }
-const price = freelancers.price;
-const sum = freelancers.reduce((acc, initialValue) => {
-    return acc + initialValue;
-}, 0);
-const average = sum / freelancers.length;
+// let price = freelancers.price;
+// const sum = freelancers.reduce((acc, initialValue) => {
+//     return acc + initialValue;
+// }, 0);
+// let average = sum / freelancers.length;
+function average() {
+    const sum = freelancers.reduce((acc, freelancer) => {
+        return acc + freelancer.price;
+    }, 0);
+    const average = sum / freelancers.length;
+    return average;
+}
+
+function randomPrice() {
+    Math.floor(Math.random() * (110 - 20)) + 20;
+};
 
 function render() {
     const averageList = document.querySelector('#average');
     const header = document.querySelector('header');
-    const averageElements = prices.map((price) => {
-        const averageElement = document.createElement('li');
-        averageElement.textContent = `The average stating price is ${average}.`;
-        header.append(averageElement);
-        return averageElement;
-    });
+    // const averageElements = prices.map((price) => {
+    //     const averageElement = document.createElement('li');
+    //     averageElement.textContent = `The average stating price is ${average()}.`;
+    //     header.append(averageElement);
+    //     return averageElement;
+    // });
+    averageList.textContent = `The average stating price is ${average()}.`
     
     const freelancerList = document.querySelector('#freelancers');
     const body = document.querySelector('body');
@@ -77,13 +87,13 @@ function render() {
         return freelancerElement;
     });
     
-    averageList.replaceChildren(...averageElements);
     freelancerList.replaceChildren(...freelancerElements);
 }
 
 const addFreelancerIntervalId = setInterval(() => {
     addFreelancer();
     render();
+    average(averageElement);
     if (averageElement !== 1) {
         clearInterval(addFreelancerIntervalId);
     }
