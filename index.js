@@ -32,7 +32,7 @@ const occupations = ['writer', 'teacher', 'programmer', 'coach', 'therapist', 'a
 
 function addFreelancer() {
     const name = names[Math.floor(Math.random() * names.length)];
-    const price = prices[Math.floor(Math.random()) * 10];
+    const price = prices[Math.floor(Math.random()) * 15];
     const occupation = occupations[Math.floor(Math.random() * occupations.length)];
     freelancers.push({name, price, occupation});
 }
